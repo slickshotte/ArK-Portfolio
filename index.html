@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ark Portfolio - Menu</title>
+    <link rel="icon" type="image/png" href="arkki copy.png">
+    <link rel="stylesheet" href="menu.css">
+</head>
+<body id="menu">
+    
+    <div class="logoshanghai">
+        <img src="arkki.png" alt="Profile Logo" class="logoko-img">
+        <div class="logoko-text">CLICK ME!</div>
+    </div>
+
+    <video autoplay loop muted playsinline class="bg-video">
+        <source src="until-then.mp4" type="video/mp4">
+    </video>
+    <video autoplay loop muted playsinline class="bg-video-right">
+        <source src="snaptik_7325925743354055941_hd.mp4" type="video/mp4">
+    </video>
+    <div class="gradient-overlay"></div>
+    
+    <div class="container">
+        <h1 class="terminal-text-title">Arkkioz</h1>
+        <p class="terminal-text-body">An individual who loves mistakes.</p>
+    </div>
+
+<nav class="sidebar-menu">
+    <div class="menu-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="skills.html">Skills</a>
+        <a href="awards.html">Awards</a>
+        <a href="experience.html">Experience</a>
+        
+        <div class="contact-trigger">Contact me? Hover!</div>
+        
+        <div class="info-box">
+            <img src="noFilter.png" alt="Profile" class="info-avatar">
+            <p><strong>Roblox ID:</strong> 155665726</p>
+            <p><strong>Discord ID:</strong> 552068979628179456</p>
+            <p><strong>Gmail:</strong> tvsharp10e@gmail.com</p>
+            <p><strong>Expertise:</strong> Coding, Google Applications, Building</p>
+        </div>
+    </div>
+</nav>
+    
+    <audio id="bg-music" loop>
+        <source src="hellllllyeahaw.mp3" type="audio/mpeg">
+    </audio>
+    
+    <script>
+        const music = document.getElementById('bg-music');
+        const logo = document.querySelector('.logoshanghai');
+        const logoText = logo.querySelector('.logoko-text');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                logoText.innerText = 'whY did YOU STOP??';
+            } else {
+                music.play().catch(error => console.error("Playback failed:", error));
+                logoText.innerText = 'rARK ONN!!!';
+            }
+            isPlaying = !isPlaying;
+        }
+
+        logo.addEventListener('click', toggleMusic);
+    </script>
+</body>
+</html>
