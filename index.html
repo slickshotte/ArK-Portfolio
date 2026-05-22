@@ -9,6 +9,14 @@
 </head>
 <body id="menu">
     
+<div id="boot-screen" class="boot-screen">
+    <div class="boot-content">
+        <h1>ARKKIOZ_OS v2.4</h1>
+        <p>System initialized. Erk. erk. erk.</p>
+        <button id="start-btn" class="start-btn">SEQUENCE_RUN_IT_UP_GNG</button>
+    </div>
+</div>
+
     <div class="logoshanghai">
         <img src="arkki.png" alt="Profile Logo" class="logoko-img">
         <div class="logoko-text">CLICK ME!</div>
@@ -23,8 +31,12 @@
     <div class="gradient-overlay"></div>
     
     <div class="container">
-        <h1 class="terminal-text-title">Arkkioz</h1>
-        <p class="terminal-text-body">An individual who loves mistakes.</p>
+        <div class="brt">
+        <h1 class="terminal-text-title">
+            <span id="name-shuffle">Arkkioz</span>
+        </h1>
+        <div class="terminal-text-body" id="dynamic-text">an individual who loves mistakes</div>
+        </div>
     </div>
 
 <nav class="sidebar-menu">
@@ -46,7 +58,23 @@
         </div>
     </div>
 </nav>
+
+<button id="easter-egg" class="sidebar-menu-btn">eRRoRKark??!!</button>
+
+<div class="system-monitor">
+    <div id="progress-track" class="progress-track">
+        <div id="progress-fill" class="progress-fill"></div>
+    </div>
     
+    <div class="contenta">
+        <span class="sys-item">SYSTEM: <span id="sys-status">LOADING...</span></span>
+        <span class="sys-item">LOAD: <span id="load-val">0</span>%</span>
+        <span class="sys-item">IP: 119.143.1.1</span>
+        <span class="sys-item">DATE: <span id="date-now"></span></span>
+        <span class="sys-item">USER: johndiznuts</span>
+    </div>
+</div>
+
     <audio id="bg-music" loop>
         <source src="hellllllyeahaw.mp3" type="audio/mpeg">
     </audio>
@@ -69,6 +97,109 @@
         }
 
         logo.addEventListener('click', toggleMusic);
+    </script>
+    <script>
+        document.getElementById('easter-egg').addEventListener('click', function() {
+        const body = document.body;
+        body.classList.add('shake-it');
+    
+        setTimeout(() => {
+            body.style.filter = 'invert(1) hue-rotate(180deg)';
+        }, 500);
+
+        setTimeout(() => {
+            body.classList.remove('shake-it');
+            body.style.filter = 'none';
+            alert("gulat ka no??? HAHAHAHHA");
+        }, 3000);
+    });
+    </script>
+    <script>
+        const phrases = [
+    "An individual who loves mistakes",
+    "a army person!",
+    "pew pew pew pew"
+    ];
+let i = 0;
+
+function typeText() {
+    const el = document.getElementById('dynamic-text');
+    el.textContent = phrases[i];
+    i = (i + 1) % phrases.length;
+    setTimeout(typeText, 3000);
+}
+typeText();
+    </script>
+    <script>
+        const nameEl = document.getElementById('name-shuffle');
+const originalName = "Arkkioz";
+
+function scrambleText() {
+    let iterations = 0;
+    
+    const interval = setInterval(() => {
+        nameEl.innerText = originalName
+            .split("")
+            .map((char, index) => {
+                if (index < iterations) return originalName[index];
+                return String.fromCharCode(65 + Math.floor(Math.random() * 58));
+            })
+            .join("");
+        
+        if (iterations >= originalName.length) clearInterval(interval);
+        iterations += 1 / 3;
+    }, 50);
+}
+
+setInterval(scrambleText, 4000);
+    </script>
+
+    <script>
+        document.getElementById('date-now').textContent = new Date().toLocaleDateString();
+
+    setInterval(() => {
+    const loadEl = document.getElementById('load-val');
+    loadEl.textContent = Math.floor(Math.random() * 20) + 30;
+}, 2000);
+    </script>
+
+    <script>
+    const fill = document.getElementById('progress-fill');
+    const loadVal = document.getElementById('load-val');
+    const sysStatus = document.getElementById('sys-status');
+    let width = 0;
+
+    function runLoader() {
+    if (width < 100) {
+        width += 1;
+        fill.style.width = width + "%";
+        loadVal.textContent = width;
+        setTimeout(runLoader, 10);
+    } else {
+        sysStatus.textContent = "ONLINE";
+        sysStatus.classList.add('is-online');
+
+        const bootScreen = document.getElementById('boot-screen');
+        bootScreen.style.opacity = '0';
+        setTimeout(() => {
+            bootScreen.style.display = 'none';
+        }, 800);
+    }
+}
+    </script>
+
+    <script>
+    document.getElementById('start-btn').addEventListener('click', function() {
+    this.style.display = 'none';
+     const log = document.querySelector('.boot-content p');
+
+      log.textContent = "> Loading kernel modules...";
+    setTimeout(() => log.textContent = "> Mounting drives...", 1000);
+    setTimeout(() => {
+        log.textContent = "> Portfolio ready.";
+        runLoader();
+    }, 2000);
+    });
     </script>
 </body>
 </html>
