@@ -218,7 +218,7 @@ body {
 .info-avatar {
     width: 80px;
     height: 80px;
-    border-radius: 50%;
+    border-radius: 10%;
     border: 2px solid #00d2ff;
     margin: 0 auto 15px auto;
     display: block;
@@ -232,4 +232,188 @@ body {
 .info-box:hover {
     opacity: 1 !important;
     visibility: visible !important;
+}
+
+.shake-it {
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+.sidebar-menu-btn {
+    position: fixed;
+    z-index: 100;
+    padding: 10px 20px;
+    background: rgba(0, 210, 255, 0.2);
+    border: 1px solid #00d2ff;
+    color: #fff;
+    cursor: pointer;
+    font-family: monospace;
+    animation: jump-around 20s infinite; 
+}
+
+@keyframes jump-around {
+    0%, 90% { transform: translate(0, 0); opacity: 0; }
+    91% { opacity: 1; }
+    92% { top: 20%; left: 30%; }
+    94% { top: 70%; left: 10%; }
+    96% { top: 40%; left: 80%; }
+    98% { top: 10%; left: 60%; }
+    100% { top: 50%; left: 45%; }
+}
+
+.brt {
+    position: relative;
+    animation: glitch 3s linear infinite;
+}
+
+@keyframes glitch {
+    0%, 100% { transform: none; opacity: 1; }
+    7% { transform: skew(-0.5deg, -0.9deg); opacity: 0.75; }
+    10% { transform: none; opacity: 1; }
+    20% { transform: skew(0.8deg, 1.1deg); opacity: 0.75; }
+    25% { transform: none; opacity: 1; }
+    50% { text-shadow: -2px 0 red, 2px 0 blue; }
+    52% { text-shadow: 2px 0 red, -2px 0 blue; }
+    54% { text-shadow: none; }
+}
+
+.statskoz {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 8px 20px;
+    background: rgba(15, 15, 15, 0.9);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(0, 210, 255, 0.5);
+    color: #00d2ff;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 11px;
+    display: flex;
+    gap: 30px;
+    z-index: 100;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.progress-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-right: 20px;
+}
+
+.box {
+    width: 8px;
+    height: 12px;
+    background: #333; /* Empty box */
+    border: 1px solid #00d2ff;
+}
+
+.box.filled {
+    background: #00d2ff;
+    box-shadow: 0 0 5px #00d2ff;
+}
+
+#load-text { font-family: monospace; color: #00d2ff; }
+
+.system-monitor {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background: rgba(15, 15, 15, 0.95);
+    border-top: 1px solid rgba(0, 210, 255, 0.5);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 100;
+}
+
+.progress-track {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: #00d2ff;
+    box-shadow: 0 0 10px #00d2ff;
+    transition: width 0.1s linear;
+}
+
+.contenta { 
+    display: flex; 
+    gap: 30px; 
+    color: #00d2ff; 
+    font-family: 'Consolas', monospace; 
+    font-size: 11px;
+}
+
+#sys-status {
+    color: #00d2ff;
+    text-shadow: 0 0 5px #00d2ff;
+    transition: all 0.5s ease;
+}
+
+#sys-status.is-online {
+    color: #39ff14;
+    text-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14;
+}
+
+.boot-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: radial-gradient(circle, #1a1a1a 0%, #050505 100%);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s ease;
+    background-image: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                      linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 4px, 3px 100%;
+}
+
+.boot-content { text-align: center; color: #00d2ff; font-family: 'Courier New', monospace; }
+
+.boot-content h1 {
+    font-size: 2.5rem;
+    text-shadow: 0 0 10px #00d2ff, 0 0 20px #00d2ff;
+    animation: flicker 2s infinite;
+}
+
+.start-btn {
+    margin-top: 20px;
+    padding: 12px 24px;
+    background: transparent;
+    border: 2px solid #00d2ff;
+    color: #00d2ff;
+    cursor: pointer;
+    font-family: 'Consolas', monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.start-btn:hover {
+    background: #00d2ff;
+    color: #000;
+    box-shadow: 0 0 20px #00d2ff;
+}
+
+@keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
 }
