@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+    if (sessionStorage.getItem('bootSequenceCompleted') === 'true') {
+        document.addEventListener("DOMContentLoaded", () => {
+            const bootScreen = document.getElementById('boot-screen');
+            if (bootScreen) {
+                bootScreen.style.display = 'none';
+            }
+        });
+    }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ark Portfolio - Menu</title>
@@ -190,15 +200,18 @@ setInterval(scrambleText, 4000);
 
     <script>
     document.getElementById('start-btn').addEventListener('click', function() {
-    this.style.display = 'none';
-     const log = document.querySelector('.boot-content p');
+        this.style.display = 'none';
+        const log = document.querySelector('.boot-content p');
 
-      log.textContent = "> Loading kernel modules...";
-    setTimeout(() => log.textContent = "> Mounting drives...", 1000);
-    setTimeout(() => {
+        log.textContent = "> Loading kernel modules...";
+        setTimeout(() => log.textContent = "> Mounting drives...", 1000);
+        setTimeout(() => {
         log.textContent = "> Portfolio ready.";
+        
+        sessionStorage.setItem('bootSequenceCompleted', 'true');
+        
         runLoader();
-    }, 2000);
+     }, 2000);
     });
     </script>
 </body>
