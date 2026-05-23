@@ -6,6 +6,11 @@
     <title>Ark Portfolio - About</title>
     <link rel="icon" type="image/png" href="arkki copy.png">
     <link rel="stylesheet" href="about.css">
+    <script>
+    if (sessionStorage.getItem('bootSequenceCompleted') !== 'true') {
+        window.location.href = 'index.html';
+    }
+    </script>
 </head>
 <body id="about-page">
 <div class="video-container">
