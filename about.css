@@ -321,7 +321,7 @@ footer {
 
 .footer-contact {
     display: flex;
-    gap: 40px;
+    gap: 80px;
     color: #666;
     font-size: 0.8rem;
 }
