@@ -19,15 +19,14 @@
 <title>Ark Portfolio - Experience</title>
 <link rel="icon" type="image/png" href="arkki copy.png">
 <link rel="stylesheet" href="experience.css">
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
-    <script>
-    (function() {
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
         const hasBooted = sessionStorage.getItem('bootSequenceCompleted');
         
-        if (hasBooted !== 'true') {
+        if (hasBooted !== 'true' && window.location.pathname !== '/index.html') {
             window.location.href = 'index.html';
         }
-    })();
+    });
 </script>
 </head>
 <div id="tsparticles"></div>
