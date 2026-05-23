@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="auth.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ark Portfolio - Menu</title>
@@ -27,7 +26,7 @@
 <body id="menu">
     
 <div class="boot-screen" id="boot-screen">
-<div class="boot-content">
+    <div class="boot-content">
         <h1>ARKKIOZ_OS v2.4</h1>
         <p>Please enter your pwetty pookie username:</p>
         <input type="text" id="username-input" placeholder="Enter username...">
@@ -35,15 +34,15 @@
     </div>
 </div>
 
-<div class="logoshanghai">
+<div class="logoshanghai" id="music-trigger">
     <img src="arkki.png" alt="Profile Logo" class="logoko-img">
-    <div class="logoko-text">CLICK ME!</div>
+    <div class="logoko-text" id="music-text">CLICK ME!</div>
 </div>
 
 <video autoplay loop muted playsinline class="bg-video">
     <source src="until-then.mp4" type="video/mp4">
 </video>
-    <video autoplay loop muted playsinline class="bg-video-right">
+<video autoplay loop muted playsinline class="bg-video-right">
     <source src="snaptik_7325925743354055941_hd.mp4" type="video/mp4">
 </video>
 <div class="gradient-overlay"></div>
@@ -53,7 +52,7 @@
         <h1 class="terminal-text-title"><span id="name-shuffle">Arkkioz</span></h1>
         <div class="terminal-text-body" id="dynamic-text">an individual who loves mistakes</div>
     </div>
-    </div>
+</div>
 
 <nav class="sidebar-menu">
     <div class="menu-links">
@@ -95,6 +94,22 @@
     const bootLog = document.querySelector('.boot-content p');
     const sysStatus = document.getElementById('sys-status');
     const fill = document.getElementById('progress-fill');
+    
+    // Music integration elements
+    const musicTrigger = document.getElementById('music-trigger');
+    const musicText = document.getElementById('music-text');
+    const bgMusic = document.getElementById('bg-music');
+
+    // Music toggle logic
+    musicTrigger.addEventListener('click', () => {
+        if (bgMusic.paused) {
+            bgMusic.play();
+            musicText.innerText = "rARKK!! ON!";
+        } else {
+            bgMusic.pause();
+            musicText.innerText = "why'd u stop??";
+        }
+    });
 
     setInterval(() => {
         const loadEl = document.getElementById('load-val');
