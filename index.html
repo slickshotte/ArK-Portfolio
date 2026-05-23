@@ -4,17 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ark Portfolio - Menu</title>
-    <link rel="icon" type="image/png" href="arkki copy.png">
+    <link rel="icon" type="image/png" href="arkki-copy.png">
     <link rel="stylesheet" href="menu.css">
+    
     <script>
+        // Logic to prevent redirect loops
+        (function() {
+            const hasBooted = sessionStorage.getItem('bootSequenceCompleted');
+            // Check if current page is index.html
+            const isIndexPage = window.location.pathname.endsWith('index.html') || window.location.pathname === '/';
+            
+            // Redirect only if NOT booted and NOT already on the landing page
+            if (hasBooted !== 'true' && !isIndexPage) {
+                window.location.href = 'index.html';
+            }
+        })();
+
         document.addEventListener("DOMContentLoaded", () => {
             const hasBooted = sessionStorage.getItem('bootSequenceCompleted');
             const savedName = sessionStorage.getItem('userAuthName');
             
             if (hasBooted === 'true') {
-                document.getElementById('boot-screen').style.display = 'none';
-                document.getElementById('sys-status').textContent = "ONLINE";
-                document.getElementById('sys-status').classList.add('is-online');
+                const bootScreen = document.getElementById('boot-screen');
+                if (bootScreen) bootScreen.style.display = 'none';
+                
+                const sysStatus = document.getElementById('sys-status');
+                if (sysStatus) {
+                    sysStatus.textContent = "ONLINE";
+                    sysStatus.classList.add('is-online');
+                }
                 
                 if (savedName) {
                     document.getElementById('user-display').innerText = savedName;
@@ -22,20 +40,11 @@
             }
         });
     </script>
-    <script>
-    (function() {
-        const hasBooted = sessionStorage.getItem('bootSequenceCompleted');
-        
-        if (hasBooted !== 'true') {
-            window.location.href = 'index.html';
-        }
-    })();
-</script>
 </head>
 <body id="menu">
     
 <div class="boot-screen" id="boot-screen">
-<div class="boot-content">
+    <div class="boot-content">
         <h1>ARKKIOZ_OS v2.4</h1>
         <p>Please enter your pwetty pookie username:</p>
         <input type="text" id="username-input" placeholder="Enter username...">
@@ -51,7 +60,7 @@
 <video autoplay loop muted playsinline class="bg-video">
     <source src="until-then.mp4" type="video/mp4">
 </video>
-    <video autoplay loop muted playsinline class="bg-video-right">
+<video autoplay loop muted playsinline class="bg-video-right">
     <source src="snaptik_7325925743354055941_hd.mp4" type="video/mp4">
 </video>
 <div class="gradient-overlay"></div>
@@ -61,7 +70,7 @@
         <h1 class="terminal-text-title"><span id="name-shuffle">Arkkioz</span></h1>
         <div class="terminal-text-body" id="dynamic-text">an individual who loves mistakes</div>
     </div>
-    </div>
+</div>
 
 <nav class="sidebar-menu">
     <div class="menu-links">
@@ -97,7 +106,6 @@
 <audio id="bg-music" loop><source src="hellllllyeahaw.mp3" type="audio/mpeg"></audio>
 
 <script>
-    // System Variables
     const usernameInput = document.getElementById('username-input');
     const startBtn = document.getElementById('start-btn');
     const userFooter = document.getElementById('user-display');
@@ -105,16 +113,13 @@
     const sysStatus = document.getElementById('sys-status');
     const fill = document.getElementById('progress-fill');
 
-    // Ping Animation
     setInterval(() => {
         const loadEl = document.getElementById('load-val');
         if (loadEl) loadEl.textContent = Math.floor(Math.random() * 20) + 30;
     }, 2000);
 
-    // Date
     document.getElementById('date-now').textContent = new Date().toLocaleDateString();
 
-    // Boot Logic
     usernameInput.addEventListener('input', () => {
         startBtn.style.display = (usernameInput.value.trim().length > 0) ? 'inline-block' : 'none';
     });
