@@ -20,10 +20,12 @@
 <title>Ark Portfolio - Skills</title>
 <link rel="icon" type="image/png" href="arkki copy.png">
 <link rel="stylesheet" href="skills.css">
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+</head>
 </head>
 
 <body>
-
+<div id="tsparticles"></div>
 <div class="skills-header">
     <h1>Skills and Expertise</h1>
 </div>
@@ -160,6 +162,29 @@
         <div class="footer-copy">&copy; 2026 Arkkioz.</div>
     </div>
 </footer>
-
+<skills>
+    <script>
+        tsParticles.load("tsparticles", {
+  particles: {
+    number: { value: 80 },
+    color: { value: "#00d2ff" },
+    shape: { type: "circle" },
+    opacity: { value: 0.5 },
+    size: { value: 3 },
+    move: { enable: true, speed: 1 },
+    line_linked: {
+      enable: true,
+      distance: 150,
+      color: "#00d2ff",
+      opacity: 0.4,
+      width: 1
+    }
+  },
+  interactivity: {
+    events: { onhover: { enable: true, mode: "repulse" } }
+  }
+});
+</script>
+</skills>
 </body>
 </html>
