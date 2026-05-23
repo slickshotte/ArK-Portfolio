@@ -95,12 +95,10 @@
     const sysStatus = document.getElementById('sys-status');
     const fill = document.getElementById('progress-fill');
     
-    // Music integration elements
     const musicTrigger = document.getElementById('music-trigger');
     const musicText = document.getElementById('music-text');
     const bgMusic = document.getElementById('bg-music');
 
-    // Music toggle logic
     musicTrigger.addEventListener('click', () => {
         if (bgMusic.paused) {
             bgMusic.play();
@@ -139,14 +137,15 @@
         }, 30);
     }
 
-    startBtn.addEventListener('click', () => {
+    startBtn.addEventListener('click', (e) => {
+        e.preventDefault(); 
         const val = usernameInput.value.trim();
         userFooter.innerText = val;
         sessionStorage.setItem('userAuthName', val);
         sessionStorage.setItem('bootSequenceCompleted', 'true');
         
         usernameInput.style.display = 'none';
-        startBtn.remove();
+        startBtn.style.display = 'none';
         
         bootLog.textContent = "> Access Granted. User: " + val;
         setTimeout(() => {
