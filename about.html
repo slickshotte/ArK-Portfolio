@@ -2,20 +2,16 @@
 <html lang="en">
 <head>
 <script>
-    const hasBooted = sessionStorage.getItem('bootSequenceCompleted');
-    
     document.addEventListener("DOMContentLoaded", () => {
-        const bootScreen = document.getElementById('boot-screen');
+        const hasBooted = sessionStorage.getItem('bootSequenceCompleted');
+        const sysStatus = document.getElementById('sys-status');
         
-        if (hasBooted === 'true') {
-            if (bootScreen) {
-                bootScreen.style.display = 'none';
-            }
-            const sysStatus = document.getElementById('sys-status');
-            if (sysStatus) {
-                sysStatus.textContent = "ONLINE";
-                sysStatus.classList.add('is-online');
-            }
+        if (hasBooted === 'true' && sysStatus) {
+            sysStatus.textContent = "ONLINE";
+            sysStatus.classList.add('is-online');
+            
+            const bootScreen = document.getElementById('boot-screen');
+            if (bootScreen) bootScreen.style.display = 'none';
         }
     });
 </script>
@@ -24,11 +20,6 @@
     <title>Ark Portfolio - About</title>
     <link rel="icon" type="image/png" href="arkki copy.png">
     <link rel="stylesheet" href="about.css">
-    <script>
-    if (sessionStorage.getItem('bootSequenceCompleted') !== 'true') {
-        window.location.href = 'index.html';
-    }
-    </script>
 </head>
 <body id="about-page">
 <div class="video-container">
