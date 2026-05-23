@@ -20,15 +20,11 @@
 <title>Ark Portfolio - Awards</title>
 <link rel="icon" type="image/png" href="arkki copy.png">
 <link rel="stylesheet" href="awards.css">
-<script>
-    if (sessionStorage.getItem('bootSequenceCompleted') !== 'true') {
-        window.location.href = 'index.html';
-    }
-</script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
 </head>
 
 <body>
-
+<div id="tsparticles"></div>
 <audio id="hover-audio" src="Download.mp3" preload="auto"></audio>
 
 <div class="skills-header">
@@ -258,6 +254,29 @@ function updateDots() {
         <div class="footer-copy">&copy; 2026 Arkkioz.</div>
     </div>
 </footer>
+
+<script>
+        tsParticles.load("tsparticles", {
+  particles: {
+    number: { value: 80 },
+    color: { value: "#ecc94b" },
+    shape: { type: "square" },
+    opacity: { value: 0.5 },
+    size: { value: 3 },
+    move: { enable: true, speed: 1 },
+    line_linked: {
+      enable: true,
+      distance: 150,
+      color: "ecc94b",
+      opacity: 0.4,
+      width: 1
+    }
+  },
+  interactivity: {
+    events: { onhover: { enable: true, mode: "repulse" } }
+  }
+});
+</script>
 
 </body>
 </html>
