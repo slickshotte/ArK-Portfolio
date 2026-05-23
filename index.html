@@ -2,20 +2,16 @@
 <html lang="en">
 <head>
 <script>
-    const hasBooted = sessionStorage.getItem('bootSequenceCompleted');
-    
     document.addEventListener("DOMContentLoaded", () => {
-        const bootScreen = document.getElementById('boot-screen');
+        const hasBooted = sessionStorage.getItem('bootSequenceCompleted');
+        const sysStatus = document.getElementById('sys-status');
         
-        if (hasBooted === 'true') {
-            if (bootScreen) {
-                bootScreen.style.display = 'none';
-            }
-            const sysStatus = document.getElementById('sys-status');
-            if (sysStatus) {
-                sysStatus.textContent = "ONLINE";
-                sysStatus.classList.add('is-online');
-            }
+        if (hasBooted === 'true' && sysStatus) {
+            sysStatus.textContent = "ONLINE";
+            sysStatus.classList.add('is-online');
+            
+            const bootScreen = document.getElementById('boot-screen');
+            if (bootScreen) bootScreen.style.display = 'none';
         }
     });
 </script>
@@ -207,20 +203,19 @@ setInterval(scrambleText, 4000);
     </script>
 
     <script>
-    document.getElementById('start-btn').addEventListener('click', function() {
-        this.style.display = 'none';
-        const log = document.querySelector('.boot-content p');
+document.getElementById('start-btn').addEventListener('click', function() {
+    this.style.display = 'none';
+    const log = document.querySelector('.boot-content p');
 
-        log.textContent = "> Loading kernel modules...";
-        setTimeout(() => log.textContent = "> Mounting drives...", 1000);
-        setTimeout(() => {
+    log.textContent = "> Loading kernel modules...";
+    setTimeout(() => log.textContent = "> Mounting drives...", 1000);
+    setTimeout(() => {
         log.textContent = "> Portfolio ready.";
-        
         sessionStorage.setItem('bootSequenceCompleted', 'true');
         
-        runLoader();
-     }, 2000);
-    });
+        runLoader(); 
+    }, 2000);
+});
     </script>
 </body>
 </html>
