@@ -417,3 +417,20 @@ body {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.8; }
 }
+
+#username-input {
+    background: transparent;
+    border: 1px solid #00f2ff; /* Matches your neon blue theme */
+    color: #00f2ff;
+    padding: 10px;
+    font-family: monospace;
+    width: 200px;
+    text-align: center;
+    display: block;
+    margin: 10px auto; /* Centers it */
+}
+
+#username-input:focus {
+    outline: none;
+    background: rgba(0, 242, 255, 0.1);
+}
