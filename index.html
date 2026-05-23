@@ -1,56 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const hasBooted = sessionStorage.getItem('bootSequenceCompleted');
-        const sysStatus = document.getElementById('sys-status');
-        
-        if (hasBooted === 'true' && sysStatus) {
-            sysStatus.textContent = "ONLINE";
-            sysStatus.classList.add('is-online');
-            
-            const bootScreen = document.getElementById('boot-screen');
-            if (bootScreen) bootScreen.style.display = 'none';
-        }
-    });
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ark Portfolio - Menu</title>
     <link rel="icon" type="image/png" href="arkki copy.png">
     <link rel="stylesheet" href="menu.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const hasBooted = sessionStorage.getItem('bootSequenceCompleted');
+            const savedName = sessionStorage.getItem('userAuthName');
+            
+            if (hasBooted === 'true') {
+                document.getElementById('boot-screen').style.display = 'none';
+                document.getElementById('sys-status').textContent = "ONLINE";
+                document.getElementById('sys-status').classList.add('is-online');
+                
+                if (savedName) {
+                    document.getElementById('user-display').innerText = savedName;
+                }
+            }
+        });
+    </script>
+    <script>
+    (function() {
+        const hasBooted = sessionStorage.getItem('bootSequenceCompleted');
+        
+        if (hasBooted !== 'true') {
+            window.location.href = 'index.html';
+        }
+    })();
+</script>
 </head>
 <body id="menu">
     
-<div id="boot-screen" class="boot-screen">
-    <div class="boot-content">
+<div class="boot-screen" id="boot-screen">
+<div class="boot-content">
         <h1>ARKKIOZ_OS v2.4</h1>
-        <p>System initialized. Erk. erk. erk.</p>
-        <button id="start-btn" class="start-btn">SEQUENCE_RUN_IT_UP_GNG</button>
+        <p>Please enter your pwetty pookie username:</p>
+        <input type="text" id="username-input" placeholder="Enter username...">
+        <button id="start-btn" class="start-btn" style="display: none;">SEQUENCE_RUN_IT_UP_GNG</button>
     </div>
 </div>
 
-    <div class="logoshanghai">
-        <img src="arkki.png" alt="Profile Logo" class="logoko-img">
-        <div class="logoko-text">CLICK ME!</div>
-    </div>
+<div class="logoshanghai">
+    <img src="arkki.png" alt="Profile Logo" class="logoko-img">
+    <div class="logoko-text">CLICK ME!</div>
+</div>
 
-    <video autoplay loop muted playsinline class="bg-video">
-        <source src="until-then.mp4" type="video/mp4">
-    </video>
+<video autoplay loop muted playsinline class="bg-video">
+    <source src="until-then.mp4" type="video/mp4">
+</video>
     <video autoplay loop muted playsinline class="bg-video-right">
-        <source src="snaptik_7325925743354055941_hd.mp4" type="video/mp4">
-    </video>
-    <div class="gradient-overlay"></div>
-    
-    <div class="container">
-        <div class="brt">
-        <h1 class="terminal-text-title">
-            <span id="name-shuffle">Arkkioz</span>
-        </h1>
+    <source src="snaptik_7325925743354055941_hd.mp4" type="video/mp4">
+</video>
+<div class="gradient-overlay"></div>
+
+<div class="container">
+    <div class="brt">
+        <h1 class="terminal-text-title"><span id="name-shuffle">Arkkioz</span></h1>
         <div class="terminal-text-body" id="dynamic-text">an individual who loves mistakes</div>
-        </div>
+    </div>
     </div>
 
 <nav class="sidebar-menu">
@@ -60,9 +70,7 @@
         <a href="skills.html">Skills</a>
         <a href="awards.html">Awards</a>
         <a href="experience.html">Experience</a>
-        
         <div class="contact-trigger">Contact me? Hover!</div>
-        
         <div class="info-box">
             <img src="noFilter.png" alt="Profile" class="info-avatar">
             <p><strong>Roblox ID:</strong> 155665726</p>
@@ -76,146 +84,73 @@
 <button id="easter-egg" class="sidebar-menu-btn">eRRoRKark??!!</button>
 
 <div class="system-monitor">
-    <div id="progress-track" class="progress-track">
-        <div id="progress-fill" class="progress-fill"></div>
-    </div>
-    
+    <div id="progress-track" class="progress-track"><div id="progress-fill" class="progress-fill"></div></div>
     <div class="contenta">
         <span class="sys-item">SYSTEM: <span id="sys-status">LOADING...</span></span>
-        <span class="sys-item">PING: <span id="load-val">0</span>ms</span>
+        <span class="sys-item">PING: <span id="load-val">30</span>ms</span>
         <span class="sys-item">IP: 119.143.1.1</span>
         <span class="sys-item">DATE: <span id="date-now"></span></span>
-        <span class="sys-item">USER: johndiznuts</span>
+        <span class="sys-item">USER: <span id="user-display">Who U gNGg?</span></span>
     </div>
 </div>
 
-    <audio id="bg-music" loop>
-        <source src="hellllllyeahaw.mp3" type="audio/mpeg">
-    </audio>
-    
-    <script>
-        const music = document.getElementById('bg-music');
-        const logo = document.querySelector('.logoshanghai');
-        const logoText = logo.querySelector('.logoko-text');
-        let isPlaying = false;
+<audio id="bg-music" loop><source src="hellllllyeahaw.mp3" type="audio/mpeg"></audio>
 
-        function toggleMusic() {
-            if (isPlaying) {
-                music.pause();
-                logoText.innerText = 'whY did YOU STOP??';
-            } else {
-                music.play().catch(error => console.error("Playback failed:", error));
-                logoText.innerText = 'rARK ONN!!!';
-            }
-            isPlaying = !isPlaying;
-        }
-
-        logo.addEventListener('click', toggleMusic);
-    </script>
-    <script>
-        document.getElementById('easter-egg').addEventListener('click', function() {
-        const body = document.body;
-        body.classList.add('shake-it');
-    
-        setTimeout(() => {
-            body.style.filter = 'invert(1) hue-rotate(180deg)';
-        }, 500);
-
-        setTimeout(() => {
-            body.classList.remove('shake-it');
-            body.style.filter = 'none';
-            alert("gulat ka no??? HAHAHAHHA");
-        }, 3000);
-    });
-    </script>
-    <script>
-        const phrases = [
-    "An individual who loves mistakes",
-    "a army person!",
-    "pew pew pew pew"
-    ];
-let i = 0;
-
-function typeText() {
-    const el = document.getElementById('dynamic-text');
-    el.textContent = phrases[i];
-    i = (i + 1) % phrases.length;
-    setTimeout(typeText, 3000);
-}
-typeText();
-    </script>
-    <script>
-        const nameEl = document.getElementById('name-shuffle');
-const originalName = "Arkkioz";
-
-function scrambleText() {
-    let iterations = 0;
-    
-    const interval = setInterval(() => {
-        nameEl.innerText = originalName
-            .split("")
-            .map((char, index) => {
-                if (index < iterations) return originalName[index];
-                return String.fromCharCode(65 + Math.floor(Math.random() * 58));
-            })
-            .join("");
-        
-        if (iterations >= originalName.length) clearInterval(interval);
-        iterations += 1 / 3;
-    }, 50);
-}
-
-setInterval(scrambleText, 4000);
-    </script>
-
-    <script>
-        document.getElementById('date-now').textContent = new Date().toLocaleDateString();
-
-    setInterval(() => {
-    const loadEl = document.getElementById('load-val');
-    loadEl.textContent = Math.floor(Math.random() * 20) + 30;
-}, 2000);
-    </script>
-
-    <script>
-    const fill = document.getElementById('progress-fill');
-    const loadVal = document.getElementById('load-val');
+<script>
+    // System Variables
+    const usernameInput = document.getElementById('username-input');
+    const startBtn = document.getElementById('start-btn');
+    const userFooter = document.getElementById('user-display');
+    const bootLog = document.querySelector('.boot-content p');
     const sysStatus = document.getElementById('sys-status');
-    let width = 0;
+    const fill = document.getElementById('progress-fill');
+
+    // Ping Animation
+    setInterval(() => {
+        const loadEl = document.getElementById('load-val');
+        if (loadEl) loadEl.textContent = Math.floor(Math.random() * 20) + 30;
+    }, 2000);
+
+    // Date
+    document.getElementById('date-now').textContent = new Date().toLocaleDateString();
+
+    // Boot Logic
+    usernameInput.addEventListener('input', () => {
+        startBtn.style.display = (usernameInput.value.trim().length > 0) ? 'inline-block' : 'none';
+    });
 
     function runLoader() {
-    if (width < 100) {
-        width += 1;
-        fill.style.width = width + "%";
-        loadVal.textContent = width;
-        setTimeout(runLoader, 10);
-    } else {
-        sysStatus.textContent = "ONLINE";
-        sysStatus.classList.add('is-online');
-
-        const bootScreen = document.getElementById('boot-screen');
-        bootScreen.style.opacity = '0';
-        setTimeout(() => {
-            bootScreen.style.display = 'none';
-        }, 800);
+        let width = 0;
+        let id = setInterval(() => {
+            if (width >= 100) {
+                clearInterval(id);
+                sysStatus.textContent = "ONLINE";
+                sysStatus.classList.add('is-online');
+                const bootScreen = document.getElementById('boot-screen');
+                bootScreen.style.opacity = '0';
+                setTimeout(() => bootScreen.style.display = 'none', 800);
+            } else {
+                width++;
+                fill.style.width = width + "%";
+            }
+        }, 30);
     }
-}
-    </script>
 
-    <script>
-document.getElementById('start-btn').addEventListener('click', function() {
-    this.style.display = 'none';
-    const log = document.querySelector('.boot-content p');
-
-    log.textContent = "> Loading kernel modules...";
-    setTimeout(() => log.textContent = "> Mounting drives...", 1000);
-    setTimeout(() => {
-        log.textContent = "> Portfolio ready.";
+    startBtn.addEventListener('click', () => {
+        const val = usernameInput.value.trim();
+        userFooter.innerText = val;
+        sessionStorage.setItem('userAuthName', val);
         sessionStorage.setItem('bootSequenceCompleted', 'true');
         
-        runLoader(); 
-    }, 2000);
-});
-    </script>
+        usernameInput.style.display = 'none';
+        startBtn.remove();
+        
+        bootLog.textContent = "> Access Granted. User: " + val;
+        setTimeout(() => {
+            bootLog.textContent = "> Loading kernel modules...";
+            runLoader(); 
+        }, 1000);
+    });
+</script>
 </body>
 </html>
