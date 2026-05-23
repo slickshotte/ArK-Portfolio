@@ -22,14 +22,14 @@
             }
         });
     </script>
-    <script>
-    (function() {
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
         const hasBooted = sessionStorage.getItem('bootSequenceCompleted');
         
-        if (hasBooted !== 'true') {
+        if (hasBooted !== 'true' && window.location.pathname !== '/index.html') {
             window.location.href = 'index.html';
         }
-    })();
+    });
 </script>
 </head>
 <body id="menu">
