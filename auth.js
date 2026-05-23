@@ -1,7 +1,7 @@
-(function() {
+document.addEventListener("DOMContentLoaded", () => {
     const hasBooted = sessionStorage.getItem('bootSequenceCompleted');
 
-    if (hasBooted !== 'true') {
-        window.location.href = 'index.html';
+    if (!hasBooted && window.location.pathname !== '/index.html') {
+        window.location.href = 'index.html'; 
     }
-})();
+});
