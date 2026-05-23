@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+    const hasBooted = sessionStorage.getItem('bootSequenceCompleted');
+    
+    document.addEventListener("DOMContentLoaded", () => {
+        const bootScreen = document.getElementById('boot-screen');
+        
+        if (hasBooted === 'true') {
+            if (bootScreen) {
+                bootScreen.style.display = 'none';
+            }
+            const sysStatus = document.getElementById('sys-status');
+            if (sysStatus) {
+                sysStatus.textContent = "ONLINE";
+                sysStatus.classList.add('is-online');
+            }
+        }
+    });
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ark Portfolio - Skills</title>
