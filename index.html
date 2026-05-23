@@ -8,13 +8,10 @@
     <link rel="stylesheet" href="menu.css">
     
     <script>
-        // Logic to prevent redirect loops
         (function() {
             const hasBooted = sessionStorage.getItem('bootSequenceCompleted');
-            // Check if current page is index.html
             const isIndexPage = window.location.pathname.endsWith('index.html') || window.location.pathname === '/';
             
-            // Redirect only if NOT booted and NOT already on the landing page
             if (hasBooted !== 'true' && !isIndexPage) {
                 window.location.href = 'index.html';
             }
@@ -45,7 +42,7 @@
     
 <div class="boot-screen" id="boot-screen">
     <div class="boot-content">
-        <h1>ARKKIOZ_OS v2.4</h1>
+        <h1>ARKKIOZ_OS v2.8</h1>
         <p>Please enter your pwetty pookie username:</p>
         <input type="text" id="username-input" placeholder="Enter username...">
         <button id="start-btn" class="start-btn" style="display: none;">SEQUENCE_RUN_IT_UP_GNG</button>
