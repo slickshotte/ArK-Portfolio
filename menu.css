@@ -420,14 +420,14 @@ body {
 
 #username-input {
     background: transparent;
-    border: 1px solid #00f2ff; /* Matches your neon blue theme */
+    border: 1px solid #00f2ff;
     color: #00f2ff;
     padding: 10px;
     font-family: monospace;
     width: 200px;
     text-align: center;
     display: block;
-    margin: 10px auto; /* Centers it */
+    margin: 10px auto;
 }
 
 #username-input:focus {
