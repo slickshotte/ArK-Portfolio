@@ -6,18 +6,6 @@
     <title>Ark Portfolio - Menu</title>
     <link rel="icon" type="image/png" href="arkki copy.png">
     <link rel="stylesheet" href="menu.css">
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const hasBooted = sessionStorage.getItem('bootSequenceCompleted');
-            const savedName = sessionStorage.getItem('userAuthName');
-            if (hasBooted === 'true') {
-                document.getElementById('boot-screen').style.display = 'none';
-                document.getElementById('sys-status').textContent = "ONLINE";
-                document.getElementById('sys-status').classList.add('is-online');
-                if (savedName) document.getElementById('user-display').innerText = savedName;
-            }
-        });
-    </script>
 </head>
 <body id="menu">
     
@@ -84,12 +72,44 @@
     const bootLog = document.querySelector('.boot-content p');
     const sysStatus = document.getElementById('sys-status');
     const fill = document.getElementById('progress-fill');
-    
+    const nameEl = document.getElementById('name-shuffle');
+    const subHeaderEl = document.getElementById('dynamic-text');
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+";
+    const subTextVariations = ["an individual who loves mistakes", "a army guy", "pew pew pew pewt ko"];
+
+    function startGlitchEffect() {
+        let iteration = 0;
+        const interval = setInterval(() => {
+            nameEl.innerText = nameEl.innerText.split("").map((letter, index) => {
+                if(index < iteration) return "Arkkioz"[index];
+                return characters[Math.floor(Math.random() * characters.length)];
+            }).join("");
+            if(iteration >= 7) clearInterval(interval);
+            iteration += 1 / 3;
+        }, 50);
+        setTimeout(() => {
+            subHeaderEl.innerText = subTextVariations[Math.floor(Math.random() * subTextVariations.length)];
+        }, 1500);
+    }
+
+    setInterval(startGlitchEffect, 3000);
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const hasBooted = sessionStorage.getItem('bootSequenceCompleted');
+        const savedName = sessionStorage.getItem('userAuthName');
+        if (hasBooted === 'true') {
+            document.getElementById('boot-screen').style.display = 'none';
+            sysStatus.textContent = "ONLINE";
+            sysStatus.classList.add('is-online');
+            if (savedName) userFooter.innerText = savedName;
+        }
+        document.getElementById('date-now').textContent = new Date().toLocaleDateString();
+    });
+
     const musicTrigger = document.getElementById('music-trigger');
     const musicText = document.getElementById('music-text');
     const bgMusic = document.getElementById('bg-music');
     const musicSource = document.getElementById('music-source');
-    
     let isPlaying = false;
     let isBasicSong = true; 
 
@@ -114,12 +134,10 @@
         bgMusic.play();
         isPlaying = true;
         musicText.innerText = "ok enjoy this basic ahh song, preSS TO STOP!!!";
-        
         const val = usernameInput.value.trim();
         userFooter.innerText = val;
         sessionStorage.setItem('userAuthName', val);
         sessionStorage.setItem('bootSequenceCompleted', 'true');
-        
         usernameInput.style.display = 'none';
         startBtn.style.display = 'none';
         bootLog.textContent = "> Access Granted. User: " + val;
@@ -140,7 +158,6 @@
     }
     
     setInterval(() => { const loadEl = document.getElementById('load-val'); if (loadEl) loadEl.textContent = Math.floor(Math.random() * 20) + 30; }, 2000);
-    document.getElementById('date-now').textContent = new Date().toLocaleDateString();
     usernameInput.addEventListener('input', () => { startBtn.style.display = (usernameInput.value.trim().length > 0) ? 'inline-block' : 'none'; });
 </script>
 </body>
